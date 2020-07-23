@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  </head>
+
+
+  <body>
+
+
+            <!-- NAVBAR STUFF. IF YOU WORK BACKEND IGNORE THIS PART -->
+
+
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        <img src="assets/grannyEmoji.png" alt="granny emoji" width="28" height="28">
+      </a>
+  
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item">
+            gamming4granny
+          </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+            More
+        </a>
+
+        <div class="navbar-dropdown">
+            <a class="navbar-item">
+            New Releases
+            </a>
+            <a class="navbar-item">
+            Best Reviewed
+            </a>
+            <a class="navbar-item">
+            Gameplay
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item">
+            Shopping
+            </a>
+        </div>
+        </div>
+
+
+    </div>
+  
+    </div>
+  </nav>
+<br><br><br><br>
+
+
+
+
+                                    <!-- CONTENT BEGINS HERE -->
+
+
+
+
+    <!-- This div contains label of search bar, the actual search bar, phrase under search bar, and button -->
+  <div class="field">
+
+    <!-- label of the search bar -->
+    <label class="label">this is where we can tell someone to start their search</label>
+   
+   <!-- THIS IS THE SEARCH BAR -->
+    <div class="control">
+      <input id="userSearch" class="input" type="text" placeholder="input id is 'userSearch' ">
+    </div>
+   
+  <!-- sentence under search bar -->
+    <p class="help">this is where we can put a random phrase</p>
+  
+  </div>
+
+  <!-- THIS IS THE SUBMIT BUTTON FOR THE SEARCH BAR -->
+  <div class="control">
+    <button id="goSearch" class="button is-primary">button id is 'goSearch'</button>
+  </div>
+
+  <br><br><br><br>
+
+
+
+
+
+
+
+<!-- there are 6 articles total. the first article is a dummy filler which will be cleared out on the button press -->
+<!-- articles have ids of "article0" through "article5" -->
+<!-- "article0" is dummy text -->
+
+
+
+
+<!-- THIS IS A STATIC DUMMY FIELD THAT WILL BE CLEARED OUT WHEN SUBMIT IS HIT-->
+
+<!-- NO API REQUIRED FOR THIS PART-->
+<article id="article0">
+  <div class='rows'>
+    <div class='row is-full'> 
+        <div class="card">
+            <div class="card-image">
+              <figure class="image is-128x128">
+                <img id="gameClip0" src="htt" alt="this is where the DUMMY clip will go id is 'gameClip0'">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img id="gamePhoto0" src="assets/dummyPhoto.jpg" alt="this is the DUMMY cover photo id is 'gamePhoto0'">
+                  </figure>
+                </div>
+                <br><br><br><br><br><br><br>
+                <div class="media-content">
+                  <p class="title is-4" id="gameName0">DUMMY title id is "gameName0"</p>
+                  <p class="subtitle is-6" id="gameRating0">DUMMY rating id is "gameRating0"</p>
+                </div>
+              </div>
+          
+              <div class="content" >
+              <p id="gameSynaps0">This is where the DUMMY synaps will go. id is "gameSynaps0"</p>
+              <p id="gameReview0"> This is where a DUMMY review will go. id is "gameReview0"</p>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+<!-- this is the first field of info for the search -->
+<article id="article1"> 
+  <div class='rows'>
+      <div class='row is-full'> 
+          <div class="card">
+              <div class="card-image">
+                <figure class="image is-128x128">
+                  <img id="gameClip1" src="htt" alt="this is where the clip will go id is 'gameClip1'">
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <img id="gamePhoto1" src="http" alt="this is the cover photo id is 'gamePhoto1'">
+                    </figure>
+                  </div>
+                  <br><br><br><br><br><br><br>
+                  <div class="media-content">
+                    <p class="title is-4" id="gameName1">title id is "gameName1"</p>
+                    <p class="subtitle is-6" id="gameRating1">rating id is "gameRating1"</p>
+                  </div>
+                </div>
+            
+                <div class="content" >
+                <p id="gameSynaps1">This is where the synaps will go. id is "gameSynaps1"</p>
+                <p id="gameReview1"> This is where a  review will go. id is "gameReview1"</p>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+</article> 
+
+
+<!-- this is the second field of info for the search -->
+<article id="article2">
+  <div class='rows'>
+    <div class='row is-full'> 
+        <div class="card">
+            <div class="card-image">
+              <figure class="image is-128x128">
+                <img id="gameClip2" src="htt" alt="this is where the clip will go id is 'gameClip2'">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img id="gamePhoto2" src="http" alt="this is the cover photo id is 'gamePhoto2'">
+                  </figure>
+                </div>
+                <br><br><br><br><br><br><br>
+                <div class="media-content">
+                  <p class="title is-4" id="gameName2">title id is "gameName2"</p>
+                  <p class="subtitle is-6" id="gameRating2">rating id is "gameRating2"</p>
+                </div>
+              </div>
+          
+              <div class="content" >
+              <p id="gameSynaps2">This is where the synaps will go. id is "gameSynaps2"</p>
+              <p id="gameReview2"> This is where a  review will go. id is "gameReview2"</p>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</article>
+
+
+<!-- this is the third field of info for the search -->
+<article id="article3">
+  <div class='rows'>
+    <div class='row is-full'> 
+        <div class="card">
+            <div class="card-image">
+              <figure class="image is-128x128">
+                <img id="gameClip3" src="htt" alt="this is where the clip will go id is 'gameClip3'">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img id="gamePhoto3" src="http" alt="this is the cover photo id is 'gamePhoto3'">
+                  </figure>
+                </div>
+                <br><br><br><br><br><br><br>
+                <div class="media-content">
+                  <p class="title is-4" id="gameName3">title id is "gameName3"</p>
+                  <p class="subtitle is-6" id="gameRating3">rating id is "gameRating3"</p>
+                </div>
+              </div>
+          
+              <div class="content" >
+              <p id="gameSynaps3">This is where the synaps will go. id is "gameSynaps3"</p>
+              <p id="gameReview3"> This is where a  review will go. id is "gameReview3"</p>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</article>
+
+<!-- this is the fourth field of info for the search -->
+<article id="article4">
+  <div class='rows'>
+    <div class='row is-full'> 
+        <div class="card">
+            <div class="card-image">
+              <figure class="image is-128x128">
+                <img id="gameClip4" src="htt" alt="this is where the clip will go id is 'gameClip4'">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img id="gamePhoto4" src="http" alt="this is the cover photo id is 'gamePhoto4'">
+                  </figure>
+                </div>
+                <br><br><br><br><br><br><br>
+                <div class="media-content">
+                  <p class="title is-4" id="gameName4">title id is "gameName4"</p>
+                  <p class="subtitle is-6" id="gameRating4">rating id is "gameRating4"</p>
+                </div>
+              </div>
+          
+              <div class="content" >
+              <p id="gameSynaps4">This is where the synaps will go. id is "gameSynaps4"</p>
+              <p id="gameReview4"> This is where a  review will go. id is "gameReview4"</p>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</article>
+
+
+<!-- this is the fifth field of info for the search -->
+<article id="article5">
+  <div class='rows'>
+    <div class='row is-full'> 
+        <div class="card">
+            <div class="card-image">
+              <figure class="image is-128x128">
+                <img id="gameClip5" src="htt" alt="this is where the clip will go id is 'gameClip5'">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img id="gamePhoto5" src="http" alt="this is the cover photo id is 'gamePhoto5'">
+                  </figure>
+                </div>
+                <br><br><br><br><br><br><br>
+                <div class="media-content">
+                  <p class="title is-4" id="gameName5">title id is "gameName5"</p>
+                  <p class="subtitle is-6" id="gameRating5">rating id is "gameRating5"</p>
+                </div>
+              </div>
+          
+              <div class="content" >
+              <p id="gameSynaps5">This is where the synaps will go. id is "gameSynaps5"</p>
+              <p id="gameReview5"> This is where a  review will go. id is "gameReview5"</p>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</article>
+
+
+  <script>
+
+
+
+  </script>
+
+</body>
+</html>
+  
