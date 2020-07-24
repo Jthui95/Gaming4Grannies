@@ -1,119 +1,133 @@
-let userTitle = "";
-    let rawgTitle = "";
+
+    let userTitle = "";
+    let gameTitleSlug = "";
+    let bestDealId = "";
+    let cheapestPrice = "";
 
 	$('#goSearch').on('click', function(event){
-		userTitle = ($('#userSearch').val());
-		$('#gameInfo').empty();
-		getGameDataCheapShark();
+        userTitle = ($('#userSearch').val());
+        getGameDataRawgBySearch();
     });
     
-    function getGameDataCheapShark(){
+    function getGameDataRawgBySearch(){
 
-        let queryCheapSharkURL = "https://www.cheapshark.com/api/1.0/games?title=" + userTitle + "&sortBy=release";
+        let queryCheapSharkURL = "https://api.rawg.io/api/games?search=" + userTitle + "&ordering=-added&page_size=5";
 
         $.ajax({
 		url: queryCheapSharkURL,
 		method: "GET"
         }).then(function(response){
             console.log(response);
-            for (let i = 0; i < response.length; i++){
-            let cheapSharkTitle = response[i].external;
-            rawgTitle = cheapSharkTitle.replace(/ /g, "-").replace(":","");
-            console.log(rawgTitle);
-            getGameDataRawg();
-            }
+            for (let i = 0; i < 5; i++){
+            $(`#gamePhoto${i}`).empty();
+            $(`#gameClip${i}`).empty();
+            $(`#gameReview${i}`).empty();
             
+            let gameTitle = response.results[i].name;
+            let gamePhoto = response.results[i].background_image;
+            let gameClip = response.results[i].clip;
+            let gameReviews = response.results[i].ratings;
+            let gameStores = response.results[i].stores;
+            let gameReleased = response.results[i].released;
+            
+            gameTitleSlug = response.results[i].slug;
+            
+            $(`#gameName${i}`).text(`${gameTitle} (Released: ${gameReleased})`);
+
+            let imgTag = $("<img>");
+            imgTag.attr('src', gamePhoto);
+            $(`#gamePhoto${i}`).append(imgTag);
+
+            
+            if (gameClip !== null) {
+                let videoTag = $("<video>");
+                videoTag.attr('src', gameClip.clip);
+                videoTag.attr('type', 'video/mp4');
+                videoTag.attr('controls', true);
+                $(`#gameClip${i}`).append(videoTag);
+            } 
+
+            let gameReviewsHeading = $('<h3>');
+            gameReviewsHeading.text('Reviews');
+            $(`#gameReview${i}`).append(gameReviewsHeading);
+
+            for (let j = 0; j < gameReviews.length; j++){
+                let reviewLiTag = $('<li>');
+                reviewLiTag.text(`${gameReviews[j].title}: ${gameReviews[j].percent}%`);
+                $(`#gameReview${i}`).append(reviewLiTag);
+            }
+
+            // for (let k = 0; k < gameStores.length; k++){
+            //     let storesLiTag = $('<li>');
+            //     storesLiTag.text(`${gameStores[k].title}: ${gameReviews[k].percent}%`);
+            //     $(`#gameStores${i}`).append(reviewLiTag);
+            // }
+            let gameRating = "";
+            let gameDescription = "";
+
+            function getGameDataRawgByTitle(){
+
+                let queryCheapSharkURL = "https://api.rawg.io/api/games/" + gameTitleSlug;
+
+                $.ajax({
+                    url: queryCheapSharkURL,
+                    method: "GET"
+                }).then(function(response){
+                    console.log(response);
+
+                gameRating = response.esrb_rating;
+                if (gameRating !== null) {
+                    gameRating = gameRating.name;
+                    $(`#gameRating${i}`).text(`Rating: ${gameRating}`);
+                } else {
+                    $(`#gameRating${i}`).text(`No Rating`);
+                }
+
+                gameDescription = response.description_raw;
+                $(`#gameSynaps${i}`).text(gameDescription);
+                
+                });
+            }
+
+            getGameDataRawgByTitle();
+            
+            }
         });
     }
 
-	function getGameDataRawg(){
+
+
+	// function getGameDataRawg(){
 		
-		let queryRawgURL = "https://api.rawg.io/api/games/" + rawgTitle;
-		let gameInfo = $('#gameInfo');
+	// 	let queryRawgURL = "https://api.rawg.io/api/games/" + rawgTitle;
+	// 	let gameInfo = $('#gameInfo');
 
-		$.ajax({
-		url: queryRawgURL,
-		method: "GET"
-		}).then(function(response) {
-            console.log(response);
-            
-			let bgImage = response.background_image;
-            let clip = response.clip;
-            let rating = response.esrb_rating;
-            let title = response.name;
-            let description = response.description_raw;
-            let genresArray = response.genres;
-            let reviewsArray = response.ratings;
-            let storesArray = response.stores;
-            let releaseDate = response.released;
-            let gameDataDiv = $('<div>');
-            let h1TagTitle = $('<h1>');
-            let pTagDescription = $('<p>');
-            let ulTagGenres = $('<ul>');
-            let ulTagReviews = $('<ul>');
-            let ulTagStores = $('<ul>');
-            let img = $('<img>');
+	// 	$.ajax({
+	// 	url: queryRawgURL,
+	// 	method: "GET",
+	// 	}).then(function(response) {
+    //         console.log(response);
+	// 	});
+    // }
 
-            if (releaseDate !== null) {
-                h1TagTitle.text(`${title} (released: ${releaseDate})`);
-            } else {
-                h1TagTitle.text(title);
-            }
-            pTagDescription.text(description);
-            ulTagGenres.text("Genres:");
-            img.attr('src', bgImage);
-            img.attr('style', 'width: 700px; height: 400px;');
-            
-            gameDataDiv.append(h1TagTitle);
+        // function getCheapestDeal(){
+        //     let queryCheapestURL = "https://www.cheapshark.com/api/1.0/deals?id=" + bestDealId;
+        //     $.ajax({
+        //         url: queryCheapestURL,
+        //         method: "GET"
+        //     }).then(function(response) {
+                
+        //     });
+        // }
 
-            if (rating !== null) { 
-                let pTagRating = $('<p>');
-                pTagRating.text(rating.name);
-                gameDataDiv.append(`Rating: ${rating.name}`);
-            }
+    // function getCheapestDeal(){
+    //     let queryCheapestURL = "https://www.cheapshark.com/api/1.0/deals?id=" + bestDealId;
 
-            gameDataDiv.append(pTagDescription);
-
-            for (let i = 0; i < genresArray.length; i++){
-                let liTagGenres = $('<li>');
-                liTagGenres.text(genresArray[i].name);
-                ulTagGenres.append(liTagGenres);
-            }
-
-            gameDataDiv.append(ulTagGenres);
-            gameDataDiv.append(img);
-            
-            
-            if (clip !== null) {
-                let video = $('<video>');
-                video.attr('src', clip.clip);
-                video.attr('type', 'video/mp4');
-                video.attr('controls', true);
-                video.attr('style', 'width: 700px; height: 400px;');
-                gameDataDiv.append(video);
-            } 
-
-            for (let i = 0; i < reviewsArray.length; i++){
-                let liTagReviews = $('<li>');
-                liTagReviews.text(`${reviewsArray[i].title}: ${reviewsArray[i].percent}%`);
-                ulTagReviews.append(liTagReviews);
-            }
-
-            for (let i = 0; i < storesArray.length; i++){
-                let liTagStores = $('<li>');
-                let aTagStoreUrl = $('<a>');
-                aTagStoreUrl.attr('href', storesArray[i].url);
-                aTagStoreUrl.attr('target', '_blank');
-                aTagStoreUrl.text(storesArray[i].url);
-                liTagStores.text(`${storesArray[i].store.name}:`);
-                ulTagStores.append(liTagStores);
-                ulTagStores.append(aTagStoreUrl);
-            }
-
-
-            gameDataDiv.append(ulTagReviews);
-            gameDataDiv.append(ulTagStores);
-            gameInfo.prepend(gameDataDiv);
-			
-		});
-    }
+    //         $.ajax({
+    //         url: queryCheapestURL,
+    //         method: "GET"
+    //         }).then(function(response) {
+    //         console.log(response.cheapestPrice.price);
+    //         cheapestPrice = response.cheapestPrice.price;
+    //         });
+    // }
