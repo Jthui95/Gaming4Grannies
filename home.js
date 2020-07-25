@@ -4,6 +4,10 @@
     let bestDealId = "";
     let cheapestPrice = "";
 
+    let cheapestPriceGameName = "";
+    let clipId = "";
+    
+
 	$('#goSearch').on('click', function(event){
         userTitle = ($('#userSearch').val());
         getGameDataRawgBySearch();
@@ -22,12 +26,13 @@
             $(`#gamePhoto${i}`).empty();
             $(`#gameClip${i}`).empty();
             $(`#gameReview${i}`).empty();
+            $(`#gameStores${i}`).empty();
             
+
             let gameTitle = response.results[i].name;
             let gamePhoto = response.results[i].background_image;
             let gameClip = response.results[i].clip;
             let gameReviews = response.results[i].ratings;
-            let gameStores = response.results[i].stores;
             let gameReleased = response.results[i].released;
             
             gameTitleSlug = response.results[i].slug;
@@ -47,9 +52,7 @@
                 $(`#gameClip${i}`).append(videoTag);
             } 
 
-            let gameReviewsHeading = $('<h3>');
-            gameReviewsHeading.text('Reviews');
-            $(`#gameReview${i}`).append(gameReviewsHeading);
+            $(`#gameReview${i}`).append($('<h3>').text('Reviews'));
 
             for (let j = 0; j < gameReviews.length; j++){
                 let reviewLiTag = $('<li>');
@@ -64,6 +67,7 @@
             // }
             let gameRating = "";
             let gameDescription = "";
+            let gameStores = "";
 
             function getGameDataRawgByTitle(){
 
@@ -83,16 +87,50 @@
                     $(`#gameRating${i}`).text(`No Rating`);
                 }
 
+                $(`#gameStores${i}`).append($('<h3>').text('Stores'));
+
+                gameStores = response.stores;
+                for (let k = 0; k < response.stores.length; k++){
+                  let storeDiv = $('<div>');
+                  let storesLiTag = $('<li>');
+                  let storeATag = $('<a>');
+                  storeATag.attr('href', gameStores[k].url);
+                  storesLiTag.attr('style', 'list-style-type:square');
+                  storeATag.attr('target', '_blank');
+                  storeATag.text(`${gameStores[k].url}`);
+                  storesLiTag.text(gameStores[k].store.name);
+                  storeDiv.append(storesLiTag);
+                  storeDiv.append(storeATag);
+                  $(`#gameStores${i}`).append(storeDiv); 
+                }
+
+                
+
                 gameDescription = response.description_raw;
                 $(`#gameSynaps${i}`).text(gameDescription);
                 
                 });
             }
 
+            // function getCheapestDeal(){
+            //     let queryCheapestURL = "https://www.cheapshark.com/api/1.0/games?title=" + gameTitle;
+            //     $.ajax({
+            //         url: queryCheapestURL,
+            //         method: "GET"
+            //     }).then(function(response) {
+            //         console.log(response);
+            //         let cheapestDealId = response[0].cheapestDealID;
+            //         console.log(cheapestDealId);
+            //     });
+            // }
+            
             getGameDataRawgByTitle();
+            //getCheapestDeal();
             
             }
+            
         });
+
     }
 
 
@@ -110,15 +148,7 @@
 	// 	});
     // }
 
-        // function getCheapestDeal(){
-        //     let queryCheapestURL = "https://www.cheapshark.com/api/1.0/deals?id=" + bestDealId;
-        //     $.ajax({
-        //         url: queryCheapestURL,
-        //         method: "GET"
-        //     }).then(function(response) {
-                
-        //     });
-        // }
+
 
     // function getCheapestDeal(){
     //     let queryCheapestURL = "https://www.cheapshark.com/api/1.0/deals?id=" + bestDealId;
