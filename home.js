@@ -6,6 +6,7 @@
 
     let cheapestPriceGameName = "";
     let clipId = "";
+    let easterEgg = "";
     
 
 	$('#goSearch').on('click', function(event){
@@ -13,7 +14,23 @@
         getGameDataRawgBySearch();
         $('#userSearch').val('');
     });
-    
+
+    //easter egg! If you click on the picture on the home page and then type "eggs", you will see the easter egg!
+
+    $('#granny').on('click', function(event){
+        easterEgg = "";
+        $('#granny').attr('src', 'assets/dummyPhoto.jpg');
+    });
+
+    $('body').on('keydown', function(event){
+        easterEgg = easterEgg + event.keyCode;
+        if (easterEgg === "69717183"){
+            $('#granny').attr('src', 'assets/easterEggs.jpg');
+        } else {
+            $('#granny').attr('src', 'assets/dummyPhoto.jpg');
+        }
+    });
+
     function getGameDataRawgBySearch(){
 
         let queryCheapSharkURL = "https://api.rawg.io/api/games?search=" + userTitle + "&ordering=-added&page_size=5";
@@ -28,6 +45,7 @@
             $(`#gameClip${i}`).empty();
             $(`#gameReview${i}`).empty();
             $(`#gameStores${i}`).empty();
+            $(`#gameRating${i}`).empty();
             
 
             let gameTitle = response.results[i].name;
@@ -68,7 +86,7 @@
             function getGameDataRawgByTitle(){
 
                 let queryCheapSharkURL = "https://api.rawg.io/api/games/" + gameTitleSlug;
-
+                
                 $.ajax({
                     url: queryCheapSharkURL,
                     method: "GET"
