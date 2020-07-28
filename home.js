@@ -11,6 +11,7 @@
 	$('#goSearch').on('click', function(event){
         userTitle = ($('#userSearch').val());
         getGameDataRawgBySearch();
+        $('#userSearch').val('');
     });
     
     function getGameDataRawgBySearch(){
@@ -60,11 +61,6 @@
                 $(`#gameReview${i}`).append(reviewLiTag);
             }
 
-            // for (let k = 0; k < gameStores.length; k++){
-            //     let storesLiTag = $('<li>');
-            //     storesLiTag.text(`${gameStores[k].title}: ${gameReviews[k].percent}%`);
-            //     $(`#gameStores${i}`).append(reviewLiTag);
-            // }
             let gameRating = "";
             let gameDescription = "";
             let gameStores = "";
@@ -110,54 +106,11 @@
                 $(`#gameSynaps${i}`).text(gameDescription);
                 
                 });
-            }
-
-            // function getCheapestDeal(){
-            //     let queryCheapestURL = "https://www.cheapshark.com/api/1.0/games?title=" + gameTitle;
-            //     $.ajax({
-            //         url: queryCheapestURL,
-            //         method: "GET"
-            //     }).then(function(response) {
-            //         console.log(response);
-            //         let cheapestDealId = response[0].cheapestDealID;
-            //         console.log(cheapestDealId);
-            //     });
-            // }
-            
+            }      
             getGameDataRawgByTitle();
-            //getCheapestDeal();
             
             }
             
         });
 
     }
-
-
-
-	// function getGameDataRawg(){
-		
-	// 	let queryRawgURL = "https://api.rawg.io/api/games/" + rawgTitle;
-	// 	let gameInfo = $('#gameInfo');
-
-	// 	$.ajax({
-	// 	url: queryRawgURL,
-	// 	method: "GET",
-	// 	}).then(function(response) {
-    //         console.log(response);
-	// 	});
-    // }
-
-
-
-    // function getCheapestDeal(){
-    //     let queryCheapestURL = "https://www.cheapshark.com/api/1.0/deals?id=" + bestDealId;
-
-    //         $.ajax({
-    //         url: queryCheapestURL,
-    //         method: "GET"
-    //         }).then(function(response) {
-    //         console.log(response.cheapestPrice.price);
-    //         cheapestPrice = response.cheapestPrice.price;
-    //         });
-    // }
