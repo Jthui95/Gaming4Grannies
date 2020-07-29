@@ -8,6 +8,7 @@
     let clipId = "";
     let easterEgg = "";
     
+    // the press of the search button calls the getGameDataRawgBySearch function
 
 	$('#goSearch').on('click', function(event){
         userTitle = ($('#userSearch').val());
@@ -19,18 +20,19 @@
 
     $('#granny').on('click', function(event){
         easterEgg = "";
-        $('#granny').attr('src', 'assets/dummyPhoto.jpg');
+        $('#granny').attr('src', 'assets/allWhite.jpg');
     });
-
+    // keyCode for e=69, g=71, and s=83 so typings "eggs" yields a string of '69717183'. When that string is met, it sets the image to the easter eggs image.
     $('body').on('keydown', function(event){
         easterEgg = easterEgg + event.keyCode;
         if (easterEgg === "69717183"){
             $('#granny').attr('src', 'assets/easterEggs.jpg');
         } else {
-            $('#granny').attr('src', 'assets/dummyPhoto.jpg');
+            $('#granny').attr('src', 'assets/allWhite.jpg');
         }
     });
 
+    // this overall function uses the RAWG api to get all necessary data for the home page
     function getGameDataRawgBySearch(){
 
         let queryCheapSharkURL = "https://api.rawg.io/api/games?search=" + userTitle + "&ordering=-added&page_size=5";
@@ -41,6 +43,8 @@
         }).then(function(response){
             console.log(response);
             for (let i = 0; i < 5; i++){
+
+            //empties all of the divs so each button presses gives new data
             $(`#gamePhoto${i}`).empty();
             $(`#gameClip${i}`).empty();
             $(`#gameReview${i}`).empty();
@@ -56,13 +60,15 @@
             
             gameTitleSlug = response.results[i].slug;
             
+            // sets the game name and release date 
             $(`#gameName${i}`).text(`${gameTitle} (Released: ${gameReleased})`);
 
+            // set the image of the game
             let imgTag = $("<img>");
             imgTag.attr('src', gamePhoto);
             $(`#gamePhoto${i}`).append(imgTag);
 
-            
+            // sets the clip of the game (if there is one)
             if (gameClip !== null) {
                 let videoTag = $("<video>");
                 videoTag.attr('src', gameClip.clip);
@@ -73,6 +79,7 @@
 
             $(`#gameReview${i}`).append($('<h3>').text('Reviews'));
 
+            // sets the reviews of the game
             for (let j = 0; j < gameReviews.length; j++){
                 let reviewLiTag = $('<li>');
                 reviewLiTag.text(`${gameReviews[j].title}: ${gameReviews[j].percent}%`);
@@ -83,6 +90,7 @@
             let gameDescription = "";
             let gameStores = "";
 
+            // have to create a new function and call it to uilize a different endpoint for different data
             function getGameDataRawgByTitle(){
 
                 let queryCheapSharkURL = "https://api.rawg.io/api/games/" + gameTitleSlug;
@@ -93,6 +101,7 @@
                 }).then(function(response){
                     console.log(response);
 
+                //sets the game rating of the game
                 gameRating = response.esrb_rating;
                 if (gameRating !== null) {
                     gameRating = gameRating.name;
@@ -103,6 +112,7 @@
 
                 $(`#gameStores${i}`).append($('<h3>').text('Stores'));
 
+                //sets the stores and links for the game
                 gameStores = response.stores;
                 for (let k = 0; k < response.stores.length; k++){
                   let storeDiv = $('<div>');
@@ -118,8 +128,7 @@
                   $(`#gameStores${i}`).append(storeDiv); 
                 }
 
-                
-
+                //set the description of the game
                 gameDescription = response.description_raw;
                 $(`#gameSynaps${i}`).text(gameDescription);
                 
