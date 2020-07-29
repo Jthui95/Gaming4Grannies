@@ -64,7 +64,7 @@ $(`#gameClip${i}`).append(video);
 $(`#gameGenre${i}`).append($('<h3>').text('Genre'));
 for(let k = 0; k < genres.length; k++){
 let genreList = $('<li>');
-genreList.text(`Genres: ${genres[k].name}`);
+genreList.text(`${genres[k].name}`);
 $(`#gameGenre${i}`).append(genreList);
 }
 
@@ -72,7 +72,7 @@ $(`#gameGenre${i}`).append(genreList);
 $(`#gameRating${i}`).append($('<h3>').text('Ratings'));
 for(let r = 0; r < ratings.length; r++){
 let gameRatings = $('<li>');
-gameRatings.text(`Ratings: ${ratings[r].title} Score: ${ratings[r].percent} `);
+gameRatings.text(`${ratings[r].title} Score: ${ratings[r].percent}% `);
 $(`#gameRating${i}`).append(gameRatings);
 }
 
