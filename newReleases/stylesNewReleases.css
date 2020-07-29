@@ -1,0 +1,31 @@
+*{
+    text-align: center;
+}
+.card{
+    /* background-image: url(../assets/flowerBG.jpg); */
+    background-color: pink;
+}
+
+body{
+    background-color: pink;
+}
+
+img{
+   padding: 30px;
+   border: purple solid 8px;
+}
+
+#emoji{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    width: 28px;
+    height: 28px;
+    border: 2px solid pink;
+    margin: 0px;
+}
+
+.title{
+    padding-top: 20px;
+}
