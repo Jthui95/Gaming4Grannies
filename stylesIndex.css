@@ -1,0 +1,61 @@
+*{
+    text-align: center;
+   
+}
+img{
+    padding-left: 60px;
+    padding-right: 60px;
+    border: 6px solid pink;
+  
+}
+
+video{
+    margin-left: 50%;
+}
+
+#searchBar{
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-top: 40px;
+    padding-bottom: 30px;
+   
+}
+
+#heading{
+    padding-top: 20px;
+    font-size: 60px;
+}
+
+.underQuote{
+    color: blue;
+
+}
+
+.underBar{
+        background-color: palevioletred;
+        margin-left: 200px;
+        margin-right: 200px;
+}
+
+.card{
+    background-color: plum;
+}
+.underBar{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+body{
+    background-image: url("assets/flowerBG.jpg") ;
+   
+  }
+
+#emoji{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    width: 28px;
+    height: 28px;
+    border: 2px solid pink;
+}
